@@ -24,48 +24,50 @@ para determinar la torta con el mayor puntaje.
 import * as readlineSync from 'readline-sync';
 
 function calcularPuntaje(sabor: number, presentacion: number, dificultad: number): number {
-    // Suma las puntuaciones de sabor, presentación y dificultad
+    // Suma  de las puntuaciones de sabor, presentación y dificultad
     return sabor + presentacion + dificultad;
 }
 
 function determinarGanador():void{
+    // Pido la cantidad de consursantes participando
     let numConcursantes : number = readlineSync.questionInt( "Ingrese la cantidad de concursantes: ");
-    // Inicializamos variables para el puntaje más alto y el índice del ganador
+
+    // Iniciazo variables que voy a necesitar
     let puntajeMaximo = 0;
-    let indiceGanador = -1;
+    let iGanador = -1;// En -1 por posibles errores si inicializo en 0
     let cantidadGanadores = 0;
     let i = 0;
 
-    // Utilizamos un bucle while para recorrer todos los participantes
+    // Recorrer todos los participantes
     while (i < numConcursantes) {
         console.log(`\nParticipante ${i + 1}`);
 
-        // Solicitamos las puntuaciones de sabor, presentación y dificultad
+        // Pido las puntuaciones de sabor, presentación y dificultad
         const sabor: number = readlineSync.questionInt('Puntaje de Sabor: ');
         const presentacion: number = readlineSync.questionInt('Puntaje de Presentacion: ');
         const dificultad: number = readlineSync.questionInt('Puntaje de Dificultad: ');
 
-        // Calculamos el puntaje total de la torta del participante
+        // Calculo el puntaje total de la torta del participante
         const puntajeTotal: number = calcularPuntaje(sabor, presentacion, dificultad);
 
-        // Comprobamos si el puntaje total es mayor al puntaje máximo actual
+        // Puntaje total es mayor al puntaje máximo actual
         if (puntajeTotal > puntajeMaximo) {
             puntajeMaximo = puntajeTotal;
-            indiceGanador = i;
+            iGanador = i;
             cantidadGanadores = 1;
         } else if (puntajeTotal === puntajeMaximo) {
             // Si hay otro participante con el mismo puntaje máximo, se incrementa el contador de ganadores
             cantidadGanadores++;
         }
-         // Incrementamos el contador para continuar con el siguiente participante
+         // Incremento el contador para continuar con el siguiente participante
          i++;
     }
     // Si hay más de un ganador, es un empate
     if (cantidadGanadores > 1) {
         console.log("\n¡Se produjo un empate!");
     } else {
-        // De lo contrario, anunciamos al ganador
-        console.log(`\nEl ganador es el participante ${indiceGanador + 1} con un puntaje de ${puntajeMaximo}.`);
+        // Si no, anunciamos al ganador
+        console.log(`\nEl ganador es el participante ${iGanador + 1} con un puntaje de ${puntajeMaximo}.`);
     }
 }
 // Ejecutamos la función para iniciar el concurso
