@@ -41,9 +41,9 @@ function determinarGanador():void{
         console.log(`\nParticipante ${i + 1}`);
 
         // Solicitamos las puntuaciones de sabor, presentación y dificultad
-        const sabor: number = parseInt(readlineSync.question('Puntaje de Sabor: '));
-        const presentacion: number = parseInt(readlineSync.question('Puntaje de Presentacion: '));
-        const dificultad: number = parseInt(readlineSync.question('Puntaje de Dificultad: '));
+        const sabor: number = readlineSync.questionInt('Puntaje de Sabor: ');
+        const presentacion: number = readlineSync.questionInt('Puntaje de Presentacion: ');
+        const dificultad: number = readlineSync.questionInt('Puntaje de Dificultad: ');
 
         // Calculamos el puntaje total de la torta del participante
         const puntajeTotal: number = calcularPuntaje(sabor, presentacion, dificultad);
