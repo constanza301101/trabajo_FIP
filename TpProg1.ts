@@ -21,56 +21,52 @@ para determinar la torta con el mayor puntaje.
 
 *Si lo consideran necesario, pueden implementar funciones extra.*/
 
-// Importamos la librería readline-sync para leer la entrada del usuario
-
-// Función para calcular el puntaje total de una torta
-// Función para calcular el puntaje total de una torta
-
+import * as readlineSync from 'readline-sync';
 
 function calcularPuntaje(sabor: number, presentacion: number, dificultad: number): number {
     // Suma las puntuaciones de sabor, presentación y dificultad
     return sabor + presentacion + dificultad;
 }
 
-// Función para determinar el ganador del concurso
-function determinarGanador(): void {
-    // Pedimos el número de participantes al usuario
-    const numeroParticipantes: number = parseInt(prompt('¿Cuántos participantes hay? ') || '0');
+function determinarGanador():void{
+    let numConcursantes : number = readlineSync.questionInt( "Ingrese la cantidad de concursantes: ");
+    // Inicializamos variables para el puntaje más alto y el índice del ganador
+    let puntajeMaximo = 0;
+    let indiceGanador = -1;
+    let cantidadGanadores = 0;
+    let i = 0;
 
-    // Creamos un array para almacenar los puntajes de las tortas
-    let puntajes: number[] = [];
-
-    // Recorremos todos los participantes
-    for (let i = 0; i < numeroParticipantes; i++) {
+    // Utilizamos un bucle while para recorrer todos los participantes
+    while (i < numConcursantes) {
         console.log(`\nParticipante ${i + 1}`);
 
         // Solicitamos las puntuaciones de sabor, presentación y dificultad
-        const sabor: number = parseInt(prompt('Puntaje de Sabor (1-5): ') || '0');
-        const presentacion: number = parseInt(prompt('Puntaje de Presentación (1-5): ') || '0');
-        const dificultad: number = parseInt(prompt('Puntaje de Dificultad (1-5): ') || '0');
+        const sabor: number = parseInt(readlineSync.question('Puntaje de Sabor: '));
+        const presentacion: number = parseInt(readlineSync.question('Puntaje de Presentacion: '));
+        const dificultad: number = parseInt(readlineSync.question('Puntaje de Dificultad: '));
 
         // Calculamos el puntaje total de la torta del participante
         const puntajeTotal: number = calcularPuntaje(sabor, presentacion, dificultad);
 
-        // Almacenamos el puntaje total en el array de puntajes
-        puntajes.push(puntajeTotal);
+        // Comprobamos si el puntaje total es mayor al puntaje máximo actual
+        if (puntajeTotal > puntajeMaximo) {
+            puntajeMaximo = puntajeTotal;
+            indiceGanador = i;
+            cantidadGanadores = 1;
+        } else if (puntajeTotal === puntajeMaximo) {
+            // Si hay otro participante con el mismo puntaje máximo, se incrementa el contador de ganadores
+            cantidadGanadores++;
+        }
+         // Incrementamos el contador para continuar con el siguiente participante
+         i++;
     }
-
-    // Obtenemos el puntaje más alto
-    const puntajeMaximo: number = Math.max(...puntajes);
-
-    // Contamos cuántos participantes tienen el puntaje más alto
-    const cantidadGanadores = puntajes.filter(puntaje => puntaje === puntajeMaximo).length;
-
     // Si hay más de un ganador, es un empate
     if (cantidadGanadores > 1) {
         console.log("\n¡Se produjo un empate!");
     } else {
         // De lo contrario, anunciamos al ganador
-        const indiceGanador = puntajes.indexOf(puntajeMaximo);
         console.log(`\nEl ganador es el participante ${indiceGanador + 1} con un puntaje de ${puntajeMaximo}.`);
     }
 }
-
 // Ejecutamos la función para iniciar el concurso
 determinarGanador();
