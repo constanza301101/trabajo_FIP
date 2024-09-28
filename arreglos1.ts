@@ -11,4 +11,3 @@ let letra : string[] = new Array (7) ;
         console.log ("la letra en la posición ", indiceEJercicio1, " es ", letra[indiceEJercicio1]);
         indiceEJercicio1++;
     }
-    
