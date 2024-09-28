@@ -13,7 +13,7 @@ let numeroMasGrande: number = 0;
 // Función para encontrar el número más grande del arreglo
 function encontrarNumeroMasGrande(arr: number[]): number {
     let mayor = arr[0];
-    for (let i = 1; i < arr.length; i++) {
+    for (let i = 1; i < 12; i++) {
         if (arr[i] > mayor) {
             mayor = arr[i];
         }

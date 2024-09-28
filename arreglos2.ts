@@ -26,7 +26,7 @@ function nombreEnArreglo(nombre: string, arreglo: string[]): boolean {
     let encontrado = false;
     let i = 0;
 
-    while (i < arreglo.length && !encontrado) {
+    while (i < 5 && !encontrado) {
         if (arreglo[i] === nombre) {
             encontrado = true;  // Si encuentra el nombre, cambia a true
         }
