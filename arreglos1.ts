@@ -1,8 +1,5 @@
-
 //1.
 //crear un arreglo de letras e imprimirlo
-
-console.log("\nejercicio 1");
 let letra : string[] = new Array (7) ;
     let indiceEJercicio1: number = 0;
     letra[0] = 'a';

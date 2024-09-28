@@ -3,8 +3,6 @@
     en el arreglo. Imprimir el arreglo y si está o no en él.
 */import * as readlineSync from 'readline-sync';
 
-console.log("\nejercicio 2");
-
 let nombres: string[] = ["Carlos", "Ana", "Luis", "Sofía", "Maria"];
 
 function verificarNombre() {
