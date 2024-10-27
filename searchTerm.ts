@@ -20,7 +20,7 @@ function isTextInPara(fullText: string, searchTerm: string): boolean {
     return fullText.toLowerCase().includes(searchTerm.toLowerCase());
 }
 
-const searchTerm = "Urania";
+const searchTerm = "le";
 const result = howManyTextInPara(paragraph, searchTerm);
 
 console.log(`El término "${searchTerm}" aparece ${result} veces en el texto.`);
